@@ -15,17 +15,11 @@ app.use(validateBearerToken = (req, res, next) => {
     const bearerToken = req.get('Authorization')
     const apiToken = process.env.API_TOKEN
     
-    if (!bearerToken) {
+    if (!bearerToken || bearerToken.split(' ')[1] !== apiToken) {
         return res
             .status(401)
             .send('Unauthorized')
     };
-
-    if (bearerToken.split(' ')[1] !== apiToken) {
-        return res
-            .status(401)
-            .send('Unauthorized')
-    }
 
     next();
     }
