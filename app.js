@@ -71,7 +71,7 @@ const handleGetBySearchOption = (req, res) => {
             .json(movies)
     };
 
-    if (searchOption && !options.includes(searchOption)) {
+    if (!options.includes(searchOption)) {
         return res
             .status(400)
             .send('Bad Request')
